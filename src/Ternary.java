@@ -1,8 +1,10 @@
+import java.util.Arrays;
+
 public class Ternary {
 
     private static int count = 0;
     private static double f(double x){
-        return Math.pow(x, 2);
+        return Math.pow(2, x);
     }
 
     public static void search(double a, double b, double eps){
@@ -44,4 +46,28 @@ public class Ternary {
 
     }
 
+
+    public static double[] search_from_array(double[] arr, double eps){
+        int shift = arr.length / 3;
+        int left_ind = shift;
+        int right_ind = arr.length - shift - 1;
+
+        if (arr[right_ind] - arr[left_ind] < 2 * eps) {
+            return arr;
+        }
+
+        if (f(arr[left_ind]) < f(arr[right_ind])) {
+                double[] arr1 = new double[right_ind + 1];
+                System.arraycopy(arr, 0, arr1, 0, right_ind + 1);
+                System.out.println(Arrays.toString(arr1));
+                return search_from_array(arr1, eps);
+        }
+        else {
+            double[] arr2 = new double[right_ind+1];
+            System.arraycopy(arr, left_ind, arr2, 0, right_ind+1);
+            System.out.println(Arrays.toString(arr2));
+            return search_from_array(arr2, eps);
+        }
+
+    }
 }
