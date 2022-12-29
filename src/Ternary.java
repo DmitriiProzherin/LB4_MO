@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Ternary {
 
     private static int count = 0;
-    private static double f(double x){
+    public static double f(double x){
         return Math.pow(2, x);
     }
 
